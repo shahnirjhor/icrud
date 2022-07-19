@@ -40,6 +40,12 @@ $RoleName = Auth::user()->getRoleNames();
                         <p>@lang('Customer')</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('item.index') }}" class="nav-link @if($c == 'item') active @endif ">
+                        <i class="fab fa-buffer nav-icon"></i>
+                        <p>@lang('Items')</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::resources([
         'customer' => App\Http\Controllers\CustomerController::class,
-
+        'item' => App\Http\Controllers\ItemController::class,
 
     ]);
 
