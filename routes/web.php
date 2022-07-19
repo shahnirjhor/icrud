@@ -50,11 +50,23 @@ Route::post('/users/store',[
 
 Route::group(['middleware' => ['auth']], function() {
 
+    Route::get('/invoice/getAddPaymentDetails',[
+        'uses' => 'App\Http\Controllers\InvoiceController@getAddPaymentDetails',
+        'as' => 'invoice.getAddPaymentDetails'
+    ]);
+
+    Route::post('/invoice/addPaymentStore',[
+        'uses' => 'App\Http\Controllers\InvoiceController@addPaymentStore',
+        'as' => 'invoice.addPaymentStore'
+    ]);
+
     Route::resources([
         'customer' => App\Http\Controllers\CustomerController::class,
         'item' => App\Http\Controllers\ItemController::class,
-
+        'invoice' => App\Http\Controllers\InvoiceController::class,
     ]);
+
+    Route::get('/getItems', 'App\Http\Controllers\InvoiceController@getItems')->name('invoice.getItems');
 
 
     Route::get('/profile/setting',[

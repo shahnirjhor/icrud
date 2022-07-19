@@ -46,6 +46,12 @@ $RoleName = Auth::user()->getRoleNames();
                         <p>@lang('Items')</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('invoice.index') }}" class="nav-link @if($c == 'invoice') active @endif ">
+                        <i class="fas fa-file-invoice-dollar nav-icon"></i>
+                        <p>@lang('Invoice')</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

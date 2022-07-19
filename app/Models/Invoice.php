@@ -86,4 +86,16 @@ class Invoice extends Model
     {
         $this->attributes['amount'] = (double) $value;
     }
+
+    public function getPaidAttribute()
+    {
+        $paid = 0;
+        if ($this->payments->count()) {
+            foreach ($this->payments as $item) {
+                $amount = (double) $item->amount;
+                $paid += $amount;
+            }
+        }
+        return $paid;
+    }
 }
