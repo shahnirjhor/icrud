@@ -37,6 +37,16 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('/users/create',[
+    'uses' => 'App\Http\Controllers\UserController@create',
+    'as' => 'users.create'
+]);
+
+Route::post('/users/store',[
+    'uses' => 'App\Http\Controllers\UserController@store',
+    'as' => 'users.store'
+]);
+
 
 Route::group(['middleware' => ['auth']], function() {
 

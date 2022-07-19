@@ -23,12 +23,23 @@
                     <a class="h1"><span class="identColor"><b>i</b></span>CRUD</a>
                 </div>
                 <div class="card-body">
-                    @include('partials.success')
-                    <p class="login-box-msg m-0 p-0">@lang('Sign in to start your session')</p>
-                    <p class="text-center m-0">@lang('Or')</p>
-                    <p class="text-center"><a href="{{ url('/users/create') }}"><strong> @lang('Sign Up')</strong></a></p>
-                    <form action="{{ route('login') }}" method="post">
+                    <p class="login-box-msg m-0 p-0">@lang('Sign Up to start your using')</p>
+                    <br>
+                    <form action="{{ route('users.store') }}" method="post">
                         @csrf
+                        <div class="input-group mb-3">
+                            <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="@lang('Name')" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="input-group mb-3">
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="@lang('Email')" required>
                             <div class="input-group-append">
@@ -55,21 +66,22 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="icheck-primary">
-                                    <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <label for="remember">
-                                        @if(session('locale') == 'ar')
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        @endif
-                                        @lang('Remember Me')
-                                    </label>
+                        <div class="input-group mb-3">
+                            <input id="password_confirmation" type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" placeholder="@lang('Confirm Password')" required>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-fingerprint"></span>
                                 </div>
                             </div>
+                            @error('password_confirmation')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="social-auth-links text-center mt-2 mb-3">
-                            <button type="submit" class="btn btn-block btn-primary"> <i class="fas fa-sign-in-alt mr-2"></i> @lang('Log in')</button>
+                            <button type="submit" class="btn btn-block btn-primary"> @lang('Sign Up')</button>
+                            <a href="{{ route('login') }}" class="btn btn-block btn-warning">@lang('Go Back')</a>
                         </div>
                     </form>
                 </div>
