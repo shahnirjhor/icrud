@@ -60,6 +60,16 @@ Route::group(['middleware' => ['auth']], function() {
         'as' => 'invoice.addPaymentStore'
     ]);
 
+    Route::get('/invoice/download',[
+        'uses' => 'App\Http\Controllers\InvoiceController@download',
+        'as' => 'invoice.download'
+    ]);
+
+    Route::post('/invoice/downloadAction',[
+        'uses' => 'App\Http\Controllers\InvoiceController@downloadAction',
+        'as' => 'invoice.downloadAction'
+    ]);
+
     Route::resources([
         'customer' => App\Http\Controllers\CustomerController::class,
         'item' => App\Http\Controllers\ItemController::class,

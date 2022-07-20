@@ -16,11 +16,4 @@
         window.print();
         location.reload();
     });
-
-    $(document).on('click', '#doDownload', function(){
-        var printContent = $('#print-area').html();
-        var file = $('body').html(printContent).download();
-        var filename = "invoice.pdf";
-        download(filename, file);
-    });
 </script>

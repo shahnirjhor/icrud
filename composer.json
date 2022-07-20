@@ -20,6 +20,7 @@
         "maatwebsite/excel": "^3.1",
         "milon/barcode": "^8.0",
         "moneyphp/money": "v3.3.1",
+        "mpdf/mpdf": "^8.1",
         "spatie/laravel-permission": "^4.0",
         "yajra/laravel-datatables-oracle": "^9.15"
     },

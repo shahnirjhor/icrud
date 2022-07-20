@@ -114,6 +114,7 @@
 
                             </td>
                             <td>
+                                <a target="_blank" href="{{ route('invoice.download', ['id' => $invoice]) }}" class="btn btn-info btn-outline btn-circle btn-lg" data-toggle="tooltip" title="Download"><i class="fa fa-download ambitious-padding-btn"></i></a>&nbsp;&nbsp;
                                 <a href="{{ route('invoice.show', $invoice) }}" class="btn btn-info btn-outline btn-circle btn-lg" data-toggle="tooltip" title="View"><i class="fa fa-eye ambitious-padding-btn"></i></a>&nbsp;&nbsp;
                                 <a href="{{ route('invoice.edit', $invoice) }}" class="btn btn-info btn-outline btn-circle btn-lg" data-toggle="tooltip" title="Edit"><i class="fa fa-edit ambitious-padding-btn"></i></a>&nbsp;&nbsp;
                                 <a href="#" data-href="{{ route('invoice.destroy', $invoice) }}" class="btn btn-info btn-outline btn-circle btn-lg" data-toggle="modal" data-target="#myModal" title="Delete"><i class="fa fa-trash ambitious-padding-btn"></i></a>
