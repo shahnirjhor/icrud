@@ -679,7 +679,21 @@ class InvoiceController extends Controller
      */
     public function destroy(Invoice $invoice)
     {
-        //
+        // Increase stock
+        $invoice->items()->each(function ($invoice_item) {
+            $item = Item::find($invoice_item->item_id);
+
+            if (empty($item)) {
+                return;
+            }
+
+            $item->quantity += (double) $invoice_item->quantity;
+            $item->save();
+        });
+
+        $this->deleteRelationships($invoice, ['items', 'histories', 'payments', 'totals']);
+        $invoice->delete();
+        return redirect()->route('invoice.index')->with('success', trans('Invoice Deleted Successfully'));
     }
 
     private function validation(Request $request, $id = 0)
@@ -690,8 +704,8 @@ class InvoiceController extends Controller
             'due_at' => ['required', 'date'],
             'invoice_number' => ['required', 'string', 'unique:invoices,invoice_number,' . $id],
             'order_number' => ['nullable', 'string'],
-            'grand_total' => ['required', 'numeric'],
-            'total_discount' => ['nullable', 'numeric'],
+            'grand_total' => ['required', 'string'],
+            'total_discount' => ['nullable', 'string'],
             'description' => ['nullable', 'string', 'max:1000'],
             'picture' => ['nullable', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
         ]);
